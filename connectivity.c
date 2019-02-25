@@ -50,8 +50,9 @@ void quick_find(int *id, int N, FILE * fp, int quietOut)
     /* read while there is data */
     while (fscanf(fp, "%d %d", &p, &q) == 2) {
 
-        pairs_cnt++;
+        
         /* do search first */
+        pairs_cnt++;
         if (id[p] == id[q]) {
             /* already in the same set; discard */
             if (!quietOut)
@@ -141,12 +142,12 @@ void quick_union(int *id, int N, FILE * fp, int quietOut)
         j = q;
 
         /* do search first */
-        /*find_op++;*/ 
+        find_op++; 
         while (i != id[i]) {
             find_op++; 
             i = id[i];
         }
-        /*find_op++;*/
+        
         while (j != id[j]) {
             find_op++; 
             j = id[j];
@@ -216,6 +217,7 @@ void weighted_quick_union(int *id, int N, FILE * fp, int quietOut)
         pairs_cnt++;
 
         /* do search first */
+        find_op++;
         for (i = p; i != id[i]; i = id[i])
             find_op++;
         for (j = q; j != id[j]; j = id[j])
@@ -289,6 +291,7 @@ void compressed_weighted_quick_union(int *id, int N, FILE * fp, int quietOut)
         pairs_cnt++;
 
         /* do search first */
+        find_op++;
         for (i = p; i != id[i]; i = id[i])
             find_op++;
         for (j = q; j != id[j]; j = id[j])
